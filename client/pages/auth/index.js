@@ -18,10 +18,18 @@ const Auth = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(userFormData);
+    try {
+      const { data } = await axios.post(
+        `http://localhost:127.0.0.1:8000/login`,
+        userFormData
+      );
+      console.log(data);
+    } catch (err) {
+      return err;
+    }
 
     clearForm();
   };
